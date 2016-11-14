@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+Grace Tay
+IT-230 Software Development with C#.NET
+11/14/2016
+4-2 Final Project Part I, Milestone Two Coding Activity: Debug & Fix If Statements (DebugFixIFStmt)
+
+This assignment focuses on debugging an if else based program. There were five errors: an extra '=', a missing '=', two inaccurate conditions if the if and last else if,
+and a randomly placed variable. Now, the program successfully lists choices.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +22,6 @@ namespace DebugFixIFStmt
         {
             (new Program()).run();
         }
-
 
         void run()
         {
@@ -36,7 +45,7 @@ namespace DebugFixIFStmt
 
         void WriteCurrentChoices(int firstChoice, int secondChoice, int thirdChoice)
         {
-            if (firstChoice == 0)
+            if (firstChoice == 0) //Error 5: I changed the if (secondChoice ==0) to (firstChoice ==0), explained in document
                 Console.WriteLine("Choices are: {0}, {1}, {2} => There are no choices yet", firstChoice, secondChoice, thirdChoice);
             else if (secondChoice == 0) //Error 2: added '=' since we need an equality operator
                 Console.WriteLine("Choices are: {0}, {1}, {2} => Currently choices are {0}", firstChoice, secondChoice, thirdChoice);  //Error 4: Removed the improperly placed first choice
