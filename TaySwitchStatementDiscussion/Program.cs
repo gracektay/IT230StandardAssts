@@ -17,6 +17,13 @@ namespace TaySwitchStatementDiscussion
 
             //Get string from user
             Console.WriteLine("Grace Tay's version");
+            Console.WriteLine("Enter the number '1' for IT 145");
+            Console.WriteLine("Enter the number '2' for IT 200");
+            Console.WriteLine("Enter the number '3' for IT 201");
+            Console.WriteLine("Enter the number '4' for IT 270");
+            Console.WriteLine("Enter the number '5' for IT 315");
+            Console.WriteLine("Enter the number '6' for IT 328");
+            Console.WriteLine("Enter the number '7' for IT 330");
             Console.Write("Enter a number: ");
             userInput = Console.ReadLine();
 
