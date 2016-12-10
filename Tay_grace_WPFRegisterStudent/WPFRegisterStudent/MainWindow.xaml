@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFRegisterStudent"
         mc:Ignorable="d"
-        Title="WPF Register Student - Teacher's Copy" Height="395.902" Width="525" Loaded="Window_Loaded">
+        Title="WPF Register Student - Grace Tay's Copy" Height="395.902" Width="525" Loaded="Window_Loaded">
     <Grid>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="66,37,0,0" VerticalAlignment="Top" Width="164" IsDropDownOpen="True"/>
         <Button x:Name="button" Content="Register for this course" HorizontalAlignment="Left" Margin="283,39,0,0" VerticalAlignment="Top" Width="166" Click="button_Click"/>

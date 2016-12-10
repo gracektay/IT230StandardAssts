@@ -22,7 +22,6 @@ namespace WPFRegisterStudent
     {
         Course choice;
 
-
         public MainWindow()
         {
             InitializeComponent();
@@ -54,13 +53,19 @@ namespace WPFRegisterStudent
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            choice = (Course)(this.comboBox.SelectedItem);
+                choice = (Course)(this.comboBox.SelectedItem);
+                string chosenCourseName = choice.ToString(); //Retrieves string of course name
 
+                label3.Content = "Registration confirmed for: " + chosenCourseName; //Updates label to confirm registration
+                listBox.Items.Add(choice); //Update the listBox with each registration
+
+
+            
             // TO DO - Create code to validate user selection (the choice object)
             // and to display an error or a registation confirmation message accordinlgy
             // Also update the total credit hours textbox if registration is confirmed for a selected course
-
         }
+
 
     }
 }
