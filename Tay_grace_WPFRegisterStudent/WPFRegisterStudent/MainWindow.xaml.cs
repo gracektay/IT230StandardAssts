@@ -52,20 +52,98 @@ namespace WPFRegisterStudent
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
-        {
+        { 
+            int numericalCourseIdentifier = 0;
+            int firstChoice = 0, secondChoice = 0, thirdChoice = 0;
+            int totalCredit = 0;
+
+            if(totalCredit == 0)
+            {
                 choice = (Course)(this.comboBox.SelectedItem);
-                string chosenCourseName = choice.ToString(); //Retrieves string of course name
+            }
 
-                label3.Content = "Registration confirmed for: " + chosenCourseName; //Updates label to confirm registration
-                listBox.Items.Add(choice); //Update the listBox with each registration
+            string chosenCourseName = choice.ToString(); //Retrieves string of course name
+
+            switch (chosenCourseName) //Created switchstatement to see what course was selected and equate it to a numerical course identifier value
+            {
+                case "IT 145":
+                    numericalCourseIdentifier = 1;
+                    break;
+                case "IT 200":
+                    numericalCourseIdentifier = 2;
+                    break;
+                case "IT 201":
+                    numericalCourseIdentifier = 3;
+                    break;
+                case "IT 270":
+                    numericalCourseIdentifier = 4;
+                    break;
+                case "IT 315":
+                    numericalCourseIdentifier = 5;
+                    break;
+                case "IT 328":
+                    numericalCourseIdentifier = 6;
+                    break;
+                case "IT 330":
+                    numericalCourseIdentifier = 7;
+                    break;
+                default:
+                    numericalCourseIdentifier = 0;
+                    break;
+            }
+
+            switch (ValidateUserSelection(numericalCourseIdentifier, firstChoice, secondChoice, thirdChoice, totalCredit))
+            {
+                case -1:
+                    label3.Content = chosenCourseName + " is not a recognized course.";
+                    break;
+                case -2:
+                    label3.Content = "You have already registed for " + chosenCourseName + ".";
+                    break;
+                case -3:
+                    label3.Content = "You cannot register for more than 9 credit hours.";
+                    break;
+                case -4:
+                    label3.Content = "Registration confirmed for: " + chosenCourseName; //Updates label to confirm registration
+
+                    totalCredit += 3;
+                    textBox.Text = totalCredit.ToString();
+
+                    if (firstChoice == 0)
+                        firstChoice = numericalCourseIdentifier;
+                    else if (secondChoice == 0)
+                        secondChoice = numericalCourseIdentifier;
+                    else if (thirdChoice == 0)
+                        thirdChoice = numericalCourseIdentifier;
 
 
-            
+
+                    listBox.Items.Add(choice); //Update the listBox with each registration
+
+                    choice = (Course)(this.comboBox.SelectedItem);
+                    chosenCourseName = choice.ToString(); //Retrieves string of course name
+
+                    break;
+
+            }
+
+
+
+
             // TO DO - Create code to validate user selection (the choice object)
             // and to display an error or a registation confirmation message accordinlgy
             // Also update the total credit hours textbox if registration is confirmed for a selected course
         }
 
-
+        int ValidateUserSelection (int choice, int firstChoice, int secondChoice, int thirdChoice, int totalCredit)
+        {
+            if (choice < 1 || choice > 7)
+                return -1;
+            else if (choice == firstChoice || choice == secondChoice || choice == thirdChoice)
+                return -2;
+            else if (totalCredit > 8)
+                return -3;
+            return -4;
+        }
     }
 }
