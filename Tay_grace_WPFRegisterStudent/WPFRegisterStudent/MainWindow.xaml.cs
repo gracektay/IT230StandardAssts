@@ -22,6 +22,9 @@ namespace WPFRegisterStudent
     {
         Course choice;
 
+        int TotalCredits = 0;
+        int firstChoice = 0, secondChoice = 0, thirdChoice = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -54,45 +57,13 @@ namespace WPFRegisterStudent
         private void button_Click(object sender, RoutedEventArgs e)
         { 
             int numericalCourseIdentifier = 0;
-            int firstChoice = 0, secondChoice = 0, thirdChoice = 0;
-            int totalCredit = 0;
 
-            if(totalCredit == 0)
-            {
-                choice = (Course)(this.comboBox.SelectedItem);
-            }
-
+            choice = (Course)(this.comboBox.SelectedItem);
             string chosenCourseName = choice.ToString(); //Retrieves string of course name
 
-            switch (chosenCourseName) //Created switchstatement to see what course was selected and equate it to a numerical course identifier value
-            {
-                case "IT 145":
-                    numericalCourseIdentifier = 1;
-                    break;
-                case "IT 200":
-                    numericalCourseIdentifier = 2;
-                    break;
-                case "IT 201":
-                    numericalCourseIdentifier = 3;
-                    break;
-                case "IT 270":
-                    numericalCourseIdentifier = 4;
-                    break;
-                case "IT 315":
-                    numericalCourseIdentifier = 5;
-                    break;
-                case "IT 328":
-                    numericalCourseIdentifier = 6;
-                    break;
-                case "IT 330":
-                    numericalCourseIdentifier = 7;
-                    break;
-                default:
-                    numericalCourseIdentifier = 0;
-                    break;
-            }
+            numericalCourseIdentifier = IdentifyCourse(chosenCourseName, numericalCourseIdentifier); //Takes the course name and converts it to an integer representative
 
-            switch (ValidateUserSelection(numericalCourseIdentifier, firstChoice, secondChoice, thirdChoice, totalCredit))
+            switch (ValidateUserSelection(numericalCourseIdentifier, firstChoice, secondChoice, thirdChoice, TotalCredits)) //Updates the label3 text based on selection
             {
                 case -1:
                     label3.Content = chosenCourseName + " is not a recognized course.";
@@ -106,8 +77,8 @@ namespace WPFRegisterStudent
                 case -4:
                     label3.Content = "Registration confirmed for: " + chosenCourseName; //Updates label to confirm registration
 
-                    totalCredit += 3;
-                    textBox.Text = totalCredit.ToString();
+                    TotalCredits += 3;
+                    textBox.Text = TotalCredits.ToString();
 
                     if (firstChoice == 0)
                         firstChoice = numericalCourseIdentifier;
@@ -115,13 +86,8 @@ namespace WPFRegisterStudent
                         secondChoice = numericalCourseIdentifier;
                     else if (thirdChoice == 0)
                         thirdChoice = numericalCourseIdentifier;
-
-
-
+                    
                     listBox.Items.Add(choice); //Update the listBox with each registration
-
-                    choice = (Course)(this.comboBox.SelectedItem);
-                    chosenCourseName = choice.ToString(); //Retrieves string of course name
 
                     break;
 
@@ -144,6 +110,40 @@ namespace WPFRegisterStudent
             else if (totalCredit > 8)
                 return -3;
             return -4;
+        }
+
+        int IdentifyCourse (string chosenCourseName, int numericalCourseIdentifier)
+        {
+            
+            switch (chosenCourseName) //Created switchstatement to see what course was selected and equate it to a numerical course identifier value
+            {
+                case "IT 145":
+                    numericalCourseIdentifier = 1;
+                break;
+                case "IT 200":
+                    numericalCourseIdentifier = 2;
+                break;
+                case "IT 201":
+                    numericalCourseIdentifier = 3;
+                break;
+                case "IT 270":
+                    numericalCourseIdentifier = 4;
+                break;
+                case "IT 315":
+                    numericalCourseIdentifier = 5;
+                break;
+                case "IT 328":
+                    numericalCourseIdentifier = 6;
+                break;
+                case "IT 330":
+                    numericalCourseIdentifier = 7;
+                break;
+                default:
+                    numericalCourseIdentifier = 0;
+                break;
+            }
+
+            return numericalCourseIdentifier;
         }
     }
 }
