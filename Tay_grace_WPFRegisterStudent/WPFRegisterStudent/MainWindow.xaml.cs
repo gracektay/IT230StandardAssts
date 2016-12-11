@@ -66,16 +66,16 @@ namespace WPFRegisterStudent
             switch (ValidateUserSelection(numericalCourseIdentifier, firstChoice, secondChoice, thirdChoice, TotalCredits)) //Updates the label3 text based on selection
             {
                 case -1:
-                    label3.Content = chosenCourseName + " is not a recognized course.";
+                    label3.Content = chosenCourseName + " is not a recognized course."; //Not really necessary, but I included it just in case
                     break;
                 case -2:
-                    label3.Content = "You have already registed for " + chosenCourseName + ".";
+                    label3.Content = "You have already registered for this " + chosenCourseName + " course.";
                     break;
                 case -3:
                     label3.Content = "You cannot register for more than 9 credit hours.";
                     break;
                 case -4:
-                    label3.Content = "Registration confirmed for: " + chosenCourseName; //Updates label to confirm registration
+                    label3.Content = "Registration confirmed for course " + chosenCourseName; //Updates label to confirm registration
 
                     TotalCredits += 3;
                     textBox.Text = TotalCredits.ToString();
@@ -90,15 +90,7 @@ namespace WPFRegisterStudent
                     listBox.Items.Add(choice); //Update the listBox with each registration
 
                     break;
-
             }
-
-
-
-
-            // TO DO - Create code to validate user selection (the choice object)
-            // and to display an error or a registation confirmation message accordinlgy
-            // Also update the total credit hours textbox if registration is confirmed for a selected course
         }
 
         int ValidateUserSelection (int choice, int firstChoice, int secondChoice, int thirdChoice, int totalCredit)
